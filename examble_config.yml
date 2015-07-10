@@ -1,0 +1,9 @@
+ipcheck_urls:
+    - http://checkip.dns.he.net
+    - http://www.myip.ch
+    - https://wtfismyip.com/text
+
+domains:
+    - mydomain.ch: AmKlr9yWkZtowocL
+    - sub.mydomain.ch: V7Aubpf44mZHChRS
+    - another.mydomain.ch: uvE72Z6pXyXp7Vug
