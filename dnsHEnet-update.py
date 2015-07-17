@@ -40,7 +40,7 @@ def getExternalIP(urls):
     ipPattern = re.compile('\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}')
     response = requests.get(url)
     ip = re.findall(ipPattern, response.text)[0]
-    log.debug("Got external IP %s from %s." % (ip, url))
+    log.debug("External IP from {url}: {ip}".format(ip=ip, url=url))
     return str(ip)
 
 
@@ -55,9 +55,9 @@ def getRecordIP(domains):
         answer = resolver.query(domain)
         ip = answer[0]
     except:
-        log.error("DNS query failed for %s" % domain)
+        log.error("DNS query failed for {domain}.".format(domain=domain))
 
-    log.debug("Got A record IP %s from %s." % (ip, domain))
+    log.debug("IP from A record ({domain}): {ip}".format(ip=ip, domain=domain))
     return str(ip)
 
 
@@ -65,15 +65,15 @@ def getRecordIP(domains):
 def updateDNS(domains):
     for item in domains:
         host, password = item.popitem()
-        url = "https://dyn.dns.he.net/nic/update?hostname=%s&password=%s" % (host, password)
+        url = "https://dyn.dns.he.net/nic/update?hostname={host}&password={pwd}".format(host=host, pwd=password)
         response = requests.get(url, verify=False)
-        log.debug("Response from dyn.dns.he.net: %s." % response.text)
+        log.debug("Response from dyn.dns.he.net: {resp}.".format(resp=response.text))
     return True
 
 
-#
+# main
 if cfg is None:
-    log.error('Config file is empty.')
+    log.error("Config file is empty.")
     exit(1)
 
 if 'ipcheck_urls' in cfg:
