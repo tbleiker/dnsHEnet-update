@@ -2,6 +2,7 @@ ipcheck_urls:
     - http://checkip.dns.he.net
     - http://www.myip.ch
     - https://wtfismyip.com/text
+    - http://ifconfig.me
 
 domains:
     - mydomain.ch: AmKlr9yWkZtowocL
